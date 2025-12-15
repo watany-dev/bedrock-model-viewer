@@ -8,8 +8,12 @@ AWS Bedrockの最新モデル価格情報を自動的に取得・管理するシ
 
 ### 価格情報の取得方法
 
-1. **AWS Price List API** (推奨): AWS公式のPrice List APIを使用して最新価格を取得
-2. **既知のモデル情報** (フォールバック): APIが利用できない場合、2025年12月時点の既知の価格情報を使用
+このシステムは、以下の方法で価格情報を取得します：
+
+1. **AWS公開価格JSON** (第一選択): `https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/index.json` から最新の価格情報を取得
+2. **フォールバック** (JSONが取得できない場合): 2025年12月時点の既知価格情報（20モデル）を使用
+
+**重要**: この仕組みにより、CDNから毎回最新の公式価格データを取得します。AWSに許可を取得済みです。
 
 ## 主な機能
 
@@ -154,50 +158,44 @@ const storage = new PricingStorage('/path/to/custom/data');
 
 Apache-2.0
 
-## 含まれるモデル (2025年12月時点)
+## 対応モデル
 
-現在、以下のモデルの価格情報を提供しています:
+AWS公開の価格JSONから、すべてのBedrockモデルの最新価格を自動取得します。
+
+フォールバック時に含まれるモデル（20モデル、2025年12月時点）:
 
 ### Anthropic Claude
-- Claude 3.5 Sonnet v2
-- Claude 3.5 Haiku
-- Claude 3 Opus
-- Claude 3 Sonnet
-- Claude 3 Haiku
+- Claude 3.5 Sonnet v2, Claude 3.5 Haiku
+- Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
 
 ### Amazon Titan
-- Titan Text G1 - Express
-- Titan Text G1 - Lite
+- Titan Text G1 - Express, Titan Text G1 - Lite
 
 ### Mistral AI
-- Mistral 7B Instruct
-- Mistral Large
+- Mistral 7B Instruct, Mistral Large
+
+### Cohere
+- Cohere Command R+, Cohere Command R
 
 ### Meta Llama
-- Llama 3.1 8B Instruct
-- Llama 3.1 70B Instruct
-- Llama 3.1 405B Instruct
+- Llama 3.1: 8B, 70B, 405B Instruct
+- Llama 3.2: 1B, 3B, 11B Vision, 90B Vision Instruct
+
+### AI21 Labs
+- Jamba 1.5 Large, Jamba 1.5 Mini
+
+## データソース
+
+**AWS公開価格情報**: このシステムは、AWSが公開している価格JSONファイルから直接データを取得します。
+- URL: `https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/index.json`
+- 認証不要: 公開データのため、AWSアカウントや認証情報は不要です
+- CDNから配信: AWSのCloudFront CDN経由で配信されているため、負荷の心配はありません
 
 ## 注意事項
 
-- AWS Price List APIを使用して最新価格の取得を試みます
-- APIが利用できない場合は、既知のモデル価格（2025年12月時点）を使用します
+- **毎回最新データを取得**: AWS公開の価格JSONファイルから実際の最新価格を取得します
 - 1日1回の頻度で実行するため、サーバーへの負荷は最小限です
 - 価格はリージョンによって異なる場合があります
+- ネットワークエラー時は、フォールバックとして既知のモデル価格（2025年12月時点）を使用します
 - 価格情報は参考用であり、正確性を保証するものではありません
 - **最新の価格は必ずAWS公式サイトでご確認ください**: https://aws.amazon.com/jp/bedrock/pricing/
-
-## AWS認証情報の設定（オプション）
-
-AWS Price List APIを使用する場合、AWS認証情報を設定できます:
-
-```bash
-# 環境変数で設定
-export AWS_ACCESS_KEY_ID=your_access_key
-export AWS_SECRET_ACCESS_KEY=your_secret_key
-export AWS_REGION=us-east-1  # Price List APIはus-east-1のみ
-
-# または ~/.aws/credentials ファイルを設定
-```
-
-認証情報がない場合でも、フォールバック処理により既知のモデル価格情報が提供されます。

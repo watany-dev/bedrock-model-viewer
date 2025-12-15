@@ -19,7 +19,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "node-cron": "^3.0.3",
-    "@aws-sdk/client-pricing": "^3.470.0",
     "axios": "^1.6.2"
   },
   "devDependencies": {
