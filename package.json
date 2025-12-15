@@ -1,0 +1,31 @@
+{
+  "name": "bedrock-model-viewer",
+  "version": "1.0.0",
+  "description": "AWS Bedrock model pricing information viewer with daily sync",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "sync": "ts-node src/sync.ts"
+  },
+  "keywords": [
+    "aws",
+    "bedrock",
+    "pricing",
+    "ai"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2"
+  }
+}
