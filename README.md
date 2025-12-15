@@ -4,7 +4,12 @@ AWS Bedrockの最新モデル価格情報を自動的に取得・管理するシ
 
 ## 概要
 
-このプロジェクトは、AWS Bedrockの公式価格ページ（https://aws.amazon.com/jp/bedrock/pricing/）から価格情報を取得し、1日1回自動的に更新します。
+このプロジェクトは、AWS Bedrockのモデル価格情報を取得し、1日1回自動的に更新します。
+
+### 価格情報の取得方法
+
+1. **AWS Price List API** (推奨): AWS公式のPrice List APIを使用して最新価格を取得
+2. **既知のモデル情報** (フォールバック): APIが利用できない場合、2025年12月時点の既知の価格情報を使用
 
 ## 主な機能
 
@@ -149,9 +154,50 @@ const storage = new PricingStorage('/path/to/custom/data');
 
 Apache-2.0
 
+## 含まれるモデル (2025年12月時点)
+
+現在、以下のモデルの価格情報を提供しています:
+
+### Anthropic Claude
+- Claude 3.5 Sonnet v2
+- Claude 3.5 Haiku
+- Claude 3 Opus
+- Claude 3 Sonnet
+- Claude 3 Haiku
+
+### Amazon Titan
+- Titan Text G1 - Express
+- Titan Text G1 - Lite
+
+### Mistral AI
+- Mistral 7B Instruct
+- Mistral Large
+
+### Meta Llama
+- Llama 3.1 8B Instruct
+- Llama 3.1 70B Instruct
+- Llama 3.1 405B Instruct
+
 ## 注意事項
 
-- このツールはAWS公式のCDNから情報を取得しています
+- AWS Price List APIを使用して最新価格の取得を試みます
+- APIが利用できない場合は、既知のモデル価格（2025年12月時点）を使用します
 - 1日1回の頻度で実行するため、サーバーへの負荷は最小限です
+- 価格はリージョンによって異なる場合があります
 - 価格情報は参考用であり、正確性を保証するものではありません
-- 最新の価格は必ずAWS公式サイトでご確認ください
+- **最新の価格は必ずAWS公式サイトでご確認ください**: https://aws.amazon.com/jp/bedrock/pricing/
+
+## AWS認証情報の設定（オプション）
+
+AWS Price List APIを使用する場合、AWS認証情報を設定できます:
+
+```bash
+# 環境変数で設定
+export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key
+export AWS_REGION=us-east-1  # Price List APIはus-east-1のみ
+
+# または ~/.aws/credentials ファイルを設定
+```
+
+認証情報がない場合でも、フォールバック処理により既知のモデル価格情報が提供されます。
