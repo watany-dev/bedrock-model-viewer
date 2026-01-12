@@ -1,0 +1,93 @@
+{
+  "lastUpdated": "2025-12-15T11:47:23.412Z",
+  "source": "Fallback - Known Models",
+  "models": [
+    {
+      "modelId": "anthropic.claude-3-5-sonnet-20241022-v2:0",
+      "modelName": "Claude 3.5 Sonnet v2",
+      "inputPricePer1000Tokens": 0.003,
+      "outputPricePer1000Tokens": 0.015,
+      "currency": "USD",
+      "notes": "東京リージョン (ap-northeast-1) の価格。リージョンにより異なります。"
+    },
+    {
+      "modelId": "anthropic.claude-3-5-haiku-20241022-v1:0",
+      "modelName": "Claude 3.5 Haiku",
+      "inputPricePer1000Tokens": 0.001,
+      "outputPricePer1000Tokens": 0.005,
+      "currency": "USD",
+      "notes": "東京リージョン (ap-northeast-1) の価格。リージョンにより異なります。"
+    },
+    {
+      "modelId": "anthropic.claude-3-opus-20240229-v1:0",
+      "modelName": "Claude 3 Opus",
+      "inputPricePer1000Tokens": 0.015,
+      "outputPricePer1000Tokens": 0.075,
+      "currency": "USD",
+      "notes": "US East (N. Virginia) リージョンの価格"
+    },
+    {
+      "modelId": "anthropic.claude-3-sonnet-20240229-v1:0",
+      "modelName": "Claude 3 Sonnet",
+      "inputPricePer1000Tokens": 0.003,
+      "outputPricePer1000Tokens": 0.015,
+      "currency": "USD"
+    },
+    {
+      "modelId": "anthropic.claude-3-haiku-20240307-v1:0",
+      "modelName": "Claude 3 Haiku",
+      "inputPricePer1000Tokens": 0.00025,
+      "outputPricePer1000Tokens": 0.00125,
+      "currency": "USD"
+    },
+    {
+      "modelId": "amazon.titan-text-express-v1",
+      "modelName": "Titan Text G1 - Express",
+      "inputPricePer1000Tokens": 0.0002,
+      "outputPricePer1000Tokens": 0.0006,
+      "currency": "USD"
+    },
+    {
+      "modelId": "amazon.titan-text-lite-v1",
+      "modelName": "Titan Text G1 - Lite",
+      "inputPricePer1000Tokens": 0.00015,
+      "outputPricePer1000Tokens": 0.0002,
+      "currency": "USD"
+    },
+    {
+      "modelId": "mistral.mistral-7b-instruct-v0:2",
+      "modelName": "Mistral 7B Instruct",
+      "inputPricePer1000Tokens": 0.00015,
+      "outputPricePer1000Tokens": 0.0002,
+      "currency": "USD"
+    },
+    {
+      "modelId": "mistral.mistral-large-2402-v1:0",
+      "modelName": "Mistral Large",
+      "inputPricePer1000Tokens": 0.008,
+      "outputPricePer1000Tokens": 0.024,
+      "currency": "USD"
+    },
+    {
+      "modelId": "meta.llama3-1-8b-instruct-v1:0",
+      "modelName": "Llama 3.1 8B Instruct",
+      "inputPricePer1000Tokens": 0.0003,
+      "outputPricePer1000Tokens": 0.0006,
+      "currency": "USD"
+    },
+    {
+      "modelId": "meta.llama3-1-70b-instruct-v1:0",
+      "modelName": "Llama 3.1 70B Instruct",
+      "inputPricePer1000Tokens": 0.00265,
+      "outputPricePer1000Tokens": 0.0035,
+      "currency": "USD"
+    },
+    {
+      "modelId": "meta.llama3-1-405b-instruct-v1:0",
+      "modelName": "Llama 3.1 405B Instruct",
+      "inputPricePer1000Tokens": 0.00532,
+      "outputPricePer1000Tokens": 0.016,
+      "currency": "USD"
+    }
+  ]
+}
